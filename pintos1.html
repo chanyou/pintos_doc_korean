@@ -67,7 +67,6 @@
                                         이론적으로 Pintos는 보통의 IBM-호환(x86) PC에서 동작할 수 있습니다. 하지만 여러 이유로 Pintos를 각자의 PC에서 직접 돌려보는 것은 현실적으로 어렵습니다. 따라서, 우리는 system simulator 위에서 Pintos를 실행 시킬 것입니다. 이 프로그램들은 80x86 CPU와 주변 장치들을 시뮬레이트 할 수 있는 소프트웨어입니다. Pintos 프로젝트에서는 <A HREF="http://bochs.sourceforge.net">Bochs</A> 와 <A HREF="http://fabrice.bellard.free.fr/qemu/">QEMU</A> simulator를 사용합니다. 또한, <A HREF="http://www.vmware.com/">VMware Player</A>에서도 Pintos가 작동하는 것이 검증된 바 있습니다.
                                     </p>
                                     <P>
-
                                 이 프로젝트들은 어렵습니다. 아시다시피, Pintos는 운영체제 과목과 함께하는 난이도 높은 프로젝트로 유명합니다. 하지만 이 문서를 꼼꼼히 읽고 진행한다면, 아마 많은 시행착오를 줄이고, 어렵지 않게 프로젝트를 진행해 나갈 수 있을 것입니다. 자세히 보시면 상당히 많은 팁들이 숨어 있습니다. 
 
                                 </P>
@@ -335,209 +334,249 @@
 
                             <section id="grading-section" class="doc-section">
                                 <h2 class="section-title">Grading</h2>
+								<p> We will grade your assignments based on test results and design quality, each of which comprises 50% of your grade. </p>
                                 <div id="testing"  class="section-block">
                                     <h3 class="block-title">Testing</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis.
+                                    <p>Your test result grade will be based on our tests.  Each project has
+											several tests, each of which has a name beginning with <Q><TT>tests</TT></Q>.
+											To completely test your submission, invoke <CODE>make check</CODE> from the
+											project <Q><TT>build</TT></Q> directory.  This will build and run each test and
+											print a &quot;pass&quot; or &quot;fail&quot; message for each one.  When a test fails,
+											<CODE>make check</CODE> also prints some details of the reason for failure.
+											After running all the tests, <CODE>make check</CODE> also prints a summary
+											of the test results.
                                     </p>
-                                    <div class="code-block">
-                                        <h6>Default code example:</h6>
-                                        <p><code>bower install &lt;package&gt;</code></p>
-                                        <p><code>npm install &lt;package&gt;</code></p>
-                                    </div><!--//code-block-->
+									<P>
+
+											For project 1, the tests will probably run faster in Bochs.  For the
+											rest of the projects, they will run much faster in QEMU.
+											<CODE>make check</CODE> will select the faster simulator by default, but
+											you can override its choice by specifying <Q><SAMP>SIMULATOR=--bochs</SAMP></Q> or
+											<Q><SAMP>SIMULATOR=--qemu</SAMP></Q> on the <CODE>make</CODE> command line.
+											</P>
+											<P>
+
+											You can also run individual tests one at a time.  A given test <VAR>t</VAR>
+											writes its output to <Q><TT><VAR>t</VAR>.output</TT></Q>, then a script scores the
+											output as &quot;pass&quot; or &quot;fail&quot; and writes the verdict to
+											<Q><TT><VAR>t</VAR>.result</TT></Q>.  To run and grade a single test, <CODE>make</CODE>
+											the <Q><TT>.result</TT></Q> file explicitly from the <Q><TT>build</TT></Q> directory, e.g.
+											<CODE>make tests/threads/alarm-multiple.result</CODE>.  If <CODE>make</CODE> says
+											that the test result is up-to-date, but you want to re-run it anyway,
+											either run <CODE>make clean</CODE> or delete the <Q><TT>.output</TT></Q> file by hand.
+											</P>
+											<P>
+
+											By default, each test provides feedback only at completion, not during
+											its run.  If you prefer, you can observe the progress of each test by
+											specifying <Q><SAMP>VERBOSE=1</SAMP></Q> on the <CODE>make</CODE> command line, as in
+											<CODE>make check VERBOSE=1</CODE>.  You can also provide arbitrary options to the
+											<CODE>pintos</CODE> run by the tests with <Q><SAMP>PINTOSOPTS='<small>...</small>'</SAMP></Q>,
+											e.g. <CODE>make check PINTOSOPTS='-j 1'</CODE> to select a jitter value of 1
+											(see section <A HREF="pintos_1.html#SEC6">1.1.4 Debugging versus Testing</A>).
+											</P>
+											<P>
+
+											All of the tests and related files are in <Q><TT>pintos/src/tests</TT></Q>.
+											Before we test your submission, we will replace the contents of that
+											directory by a pristine, unmodified copy, to ensure that the correct
+											tests are used.  Thus, you can modify some of the tests if that helps in
+											debugging, but we will run the originals.
+											</P>
+											<P>
+
+											All software has bugs, so some of our tests may be flawed.  If you think
+											a test failure is a bug in the test, not a bug in your code,
+											please point it out.  We will look at it and fix it if necessary.
+											</P>
+											<P>
+
+											Please don't try to take advantage of our generosity in giving out our
+											test suite.  Your code has to work properly in the general case, not
+											just for the test cases we supply.  For example, it would be unacceptable
+											to explicitly base the kernel's behavior on the name of the running
+											test case.  Such attempts to side-step the test cases will receive no
+											credit.  If you think your solution may be in a gray area here, please
+											ask us about it.
+											</P>
+
                                 </div><!--//section-block-->
                                 <div id="design"  class="section-block">
                                     <h3 class="block-title">Design</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                                    </p>
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <h6>Un-ordered list example</h6>
-                                            <ul class="list">
-        										<li>Lorem ipsum dolor sit amet.</li>
-        										<li>Aliquam tincidunt mauris.</li>
-        										<li>Ultricies eget vel aliquam libero.
-        											<ul>
-        												<li>Turpis pulvinar</li>
-        												<li>Feugiat scelerisque</li>
-        												<li>Ut tincidunt</li>
-        											</ul>
-        										</li>
-        										<li>Pellentesque habitant morbi.</li>
-        										<li>Praesent dapibus, neque id.</li>
-        									</ul>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <h6>Ordered list example</h6>
-                                            <ol class="list">
-        										<li>Lorem ipsum dolor sit amet.</li>
-        										<li>Aliquam tincidunt mauris.</li>
-        										<li>Ultricies eget vel aliquam libero.
-        											<ul>
-        												<li>Turpis pulvinar</li>
-        												<li>Feugiat scelerisque</li>
-        												<li>Ut tincidunt</li>
-        											</ul>
-        										</li>
-        										<li>Pellentesque habitant morbi.</li>
-        										<li>Praesent dapibus, neque id.</li>
-        									</ol>
-                                        </div>
-                                    </div><!--//row-->
+									<P>
+
+									We will judge your design based on the design document and the source
+									code that you submit.  We will read your entire design document and much
+									of your source code.  
+									</P>
+									<P>
+
+									Don't forget that design quality, including the design document, is 50%
+									of your project grade.  It
+									is better to spend one or two hours writing a good design document than
+									it is to spend that time getting the last 5% of the points for tests and
+									then trying to rush through writing the design document in the last 15
+									minutes.
+									</P>
+									<div id="design" class="content">
+									<h4>Design Document</h4>
+										<P>
+										We provide a design document template for each project.  For each
+										significant part of a project, the template asks questions in four
+										areas: 
+										</P>
+										<P>
+										</P>
+										<DL COMPACT>
+										<DT><STRONG>Data Structures</STRONG>
+										<DD><P>
+										The instructions for this section are always the same:
+										</P>
+										<P>
+										<BLOCKQUOTE>
+										Copy here the declaration of each new or changed <CODE>struct</CODE> or
+										<CODE>struct</CODE> member, global or static variable, <CODE>typedef</CODE>, or
+										enumeration.  Identify the purpose of each in 25 words or less.
+										</BLOCKQUOTE>
+										<P>
+										The first part is mechanical.  Just copy new or modified declarations
+										into the design document, to highlight for us the actual changes to data
+										structures.  Each declaration should include the comment that should
+										accompany it in the source code (see below).
+										</P>
+										<P>
+										We also ask for a very brief description of the purpose of each new or
+										changed data structure.  The limit of 25 words or less is a guideline
+										intended to save your time and avoid duplication with later areas.
+										</P>
+										<P>
+										</P>
+										<DT><STRONG>Algorithms</STRONG>
+										<DD><P>
+										This is where you tell us how your code works, through questions that
+										probe your understanding of your code.  We might not be able to easily
+										figure it out from the code, because many creative solutions exist for
+										most OS problems.  Help us out a little.
+										</P>
+										<P>
+										Your answers should be at a level below the high level description of
+										requirements given in the assignment.  We have read the assignment too,
+										so it is unnecessary to repeat or rephrase what is stated there.  On the
+										other hand, your answers should be at a level above the low level of the
+										code itself.  Don't give a line-by-line run-down of what your code does.
+										Instead, use your answers to explain how your code works to implement
+										the requirements.
+										</P>
+										<P>
+
+										</P>
+										<DT><STRONG>Synchronization</STRONG>
+										<DD><P>
+
+										An operating system kernel is a complex, multithreaded program, in which
+										synchronizing multiple threads can be difficult.  This section asks
+										about how you chose to synchronize this particular type of activity.
+										</P>
+										<P>
+
+										</P>
+										<DT><STRONG>Rationale</STRONG>
+										<DD><P>
+
+										Whereas the other sections primarily ask &quot;what&quot; and &quot;how,&quot; the
+										rationale section concentrates on &quot;why.&quot;  This is where we ask you to
+										justify some design decisions, by explaining why the choices you made
+										are better than alternatives.  You may be able to state these in terms
+										of time and space complexity, which can be made as rough or informal
+										arguments (formal language or proofs are unnecessary).
+										</DL>
+										<P>
+
+										An incomplete, evasive, or non-responsive design document or one that
+										strays from the template without good reason may be penalized.
+										Incorrect capitalization, punctuation, spelling, or grammar can also
+										cost points.  See section <A HREF="pintos_9.html#SEC142">D. Project Documentation</A>, for a sample design document
+										for a fictitious project.
+										</P>									
+										</div> <!--//content-->
+										<div id="source" class="content">
+											<h4>Source Code</h4>
+											<P>
+
+Your design will also be judged by looking at your source code.  We will
+typically look at the differences between the original Pintos source
+tree and your submission, based on the output of a command like
+<CODE>diff -urpb pintos.orig pintos.submitted</CODE>.  We will try to match up your
+description of the design with the code submitted.  Important
+discrepancies between the description and the actual code will be
+penalized, as will be any bugs we find by spot checks.
+</P>
+<P>
+
+The most important aspects of source code design are those that specifically
+relate to the operating system issues at stake in the project.  For
+example, the organization of an inode is an important part of file
+system design, so in the file system project a poorly designed inode
+would lose points.  Other issues are much less important.  For
+example, multiple Pintos design problems call for a &quot;priority
+queue,&quot; that is, a dynamic collection from which the minimum (or
+maximum) item can quickly be extracted.  Fast priority queues can be
+implemented many ways, but we do not expect you to build a fancy data
+structure even if it might improve performance.  Instead, you are
+welcome to use a linked list (and Pintos even provides one with
+convenient functions for sorting and finding minimums and maximums).
+</P>
+<P>
+
+Pintos is written in a consistent style.  Make your additions and
+modifications in existing Pintos source files blend in, not stick out.
+In new source files, adopt the existing Pintos style by preference, but
+make your code self-consistent at the very least.  There should not be a
+patchwork of different styles that makes it obvious that three different
+people wrote the code.  Use horizontal and vertical white space to make
+code readable.  Add a brief comment on every structure, structure
+member, global or static variable, typedef, enumeration, and function
+definition.  Update
+existing comments as you modify code.  Don't comment out or use the
+preprocessor to ignore blocks of code (instead, remove it entirely).
+Use assertions to document key invariants.  Decompose code into
+functions for clarity.  Code that is difficult to understand because it
+violates these or other &quot;common sense&quot; software engineering practices
+will be penalized.
+</P>
+<P>
+
+In the end, remember your audience.  Code is written primarily to be
+read by humans.  It has to be acceptable to the compiler too, but the
+compiler doesn't care about how it looks or how well it is written.
+</P>
+										</div> <!-- content -->
                                 </div><!--//section-block-->
-                                <div id="step3"  class="section-block">
-                                    <h3 class="block-title">Step Three</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis.
-                                    </p>
-                                </div><!--//section-block-->
+                               
                             </section><!--//doc-section-->
                             
-                            <section id="code-section" class="doc-section">
-                                <h2 class="section-title">Code</h2>
+                            <section id="legal-section" class="doc-section">
+                                <h2 class="section-title">Legal and Ethical Issues</h2>
                                 <div class="section-block">
-                                    <p>
-                                        <a href="http://prismjs.com/" target="_blank">PrismJS</a> is used as the syntax highlighter here. You can <a href="http://prismjs.com/download.html" target="_blank">build your own version</a> via their website should you need to.
-                                    </p>
-                                    
-                                </div><!--//section-block-->
-                                <div id="html" class="section-block">
-                                    
-                                    <div class="callout-block callout-success">
-                                        <div class="icon-holder">
-                                            <i class="fa fa-thumbs-up"></i>
-                                        </div><!--//icon-holder-->
-                                        <div class="content">
-                                            <h4 class="callout-title">Useful Tip:</h4>
-                                            <p>You can use this online <a href="https://mothereff.in/html-entities" target="_blank">HTML entity encoder/decoder</a> to generate your code examples.</p>
-                                        </div><!--//content-->
-                                    </div>
-                                    <div class="code-block">
-                                        <h6>HTML Code Example</h6>
-                                        <pre><code class="language-markup">&lt;!DOCTYPE html&gt; 
-&lt;html lang=&quot;en&quot;&gt; 
-    ...
-    &lt;div class=&quot;jumbotron&quot;&gt; 
-        &lt;h1&gt;Hello, world!&lt;/h1&gt; 
-        &lt;p&gt;...&lt;/p&gt; 
-        &lt;p&gt;&lt;a class=&quot;btn btn-primary btn-lg&quot; href=&quot;#&quot; role=&quot;button&quot;&gt;Learn more&lt;/a&gt;&lt;/p&gt; 
-    &lt;/div&gt;
-    &lt;div class=&quot;jumbotron&quot;&gt; 
-        &lt;h1&gt;Hello, world!&lt;/h1&gt; 
-        &lt;p&gt;...&lt;/p&gt; 
-        &lt;p&gt;&lt;a class=&quot;btn btn-primary btn-lg&quot; href=&quot;#&quot; role=&quot;button&quot;&gt;Learn more&lt;/a&gt;&lt;/p&gt; 
-    &lt;/div&gt;
-    ...
-&lt;/html&gt;</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="css" class="section-block">
-                                    <div class="code-block">
-                                        <h6>CSS Code Example</h6>
-                                        <pre><code class="language-css">/* ======= Base Styling ======= */
-body {
-    font-family: 'Open Sans', arial, sans-serif; 
-    color: #333; 
-    font-size: 16px; 
-    -webkit-font-smoothing: antialiased; 
-    -moz-osx-font-smoothing: grayscale; 
-}</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="less" class="section-block">
-                                    <div class="code-block">
-                                        <h6>LESS Code Example</h6>
-                                        <pre><code class="language-css">/*
-* Template Name: prettyDocs - Responsive Website Template for documentations 
-* Version: 1.0 
-* Author: Xiaoying Riley 
-* License: Creative Commons Attribution 3.0 License 
-* Twitter: @3rdwave_themes 
-* Website: http://themes.3rdwavemedia.com/ 
-*/ 
-@import &quot;mixins.less&quot;; 
-@import &quot;theme-default.less&quot;; 
-@import &quot;base.less&quot;; 
-@import &quot;doc.less&quot;; 
-@import &quot;landing.less&quot;; 
-@import &quot;responsive.less&quot;;</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="sass" class="section-block">
-                                    <div class="code-block">
-                                        <h6>Sass Code Example</h6>
-                                        <pre><code class="language-sass">#main {
-    $width: 5em; 
-    width: $width; 
-}
+                                   <P>
 
-#sidebar { 
-    width: $width; 
-}</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="javascript" class="section-block">
-                                    <div class="code-block">
-                                        <h6>JavaScript Code Example</h6>
-                                        <pre><code class="language-javascript">&lt;script&gt; 
-    function myFunction(a, b) { 
-        return a * b; 
-    } 
-    
-    document.getElementById(&quot;demo&quot;).innerHTML = myFunction(4, 3); 
-&lt;/script&gt;</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="python" class="section-block">
-                                    <div class="code-block">
-                                        <h6>Python Code Example</h6>
-                                        <pre><code class="language-python">&gt;&gt;&gt; x = int(input(&quot;
-Please enter an integer: &quot;)) Please enter an integer: 42 
-&gt;&gt;&gt; if x &lt; 0: 
-... x = 0 
-... print('Negative changed to zero') 
-... elif x == 0: 
-... print('Zero') 
-... elif x == 1: 
-... print('Single') 
-... else: 
-... print('More') 
-... More</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="php" class="section-block">
-                                    <div class="code-block">
-                                        <h6>PHP Code Example</h6>
-                                        <pre><code class="language-php">&lt;?php 
-$txt = &quot;Hello world!&quot;; 
-$x = 5; 
-$y = 10.5; 
+Pintos is distributed under a liberal license that allows free use,
+modification, and distribution.  Students and others who work on Pintos
+own the code that they write and may use it for any purpose.
+Pintos comes with NO WARRANTY, not even for MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.
+See section <A HREF="pintos_14.html#SEC172">License</A>, for details of the license and lack of warranty.
+</P>
+<P>
 
-echo $txt; 
-echo &quot;&lt;br&gt;&quot;; 
-echo $x; 
-echo &quot;&lt;br&gt;&quot;; 
-echo $y; 
-?&gt;</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="handlebars" class="section-block">
-                                    <div class="code-block">
-                                        <h6>Handlebars Code Example</h6>
-                                        <pre><code class="language-handlebars">Handlebars.registerHelper('list', function(items, options) { 
-  var out = &quot;&lt;ul&gt;&quot;; 
-  
-  for(var i=0, l=items.length; i&lt;l; i++) { 
-    out = out + &quot;&lt;li&gt;&quot; + options.fn(items[i]) + &quot;&lt;/li&gt;&quot;; 
-  } 
-  
-  return out + &quot;&lt;/ul&gt;&quot;; 
-});</code></pre>
-                                    </div><!--//code-block-->
-                                    <div class="code-block">
-                                        <h6>Git Code Example</h6>
-                                        <pre><code class="language-git">$ git add Documentation.txt</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                            </section><!--//doc-section-->
+In the context of Stanford's CS 140 course, please respect the spirit
+and the letter of the honor code by refraining from reading any homework
+solutions available online or elsewhere.  Reading the source code for
+other operating system kernels, such as Linux or FreeBSD, is allowed,
+but do not copy code from them literally.  Please cite the code that
+inspired your own in your design documentation.
+</P>
+                            </section><!--//legal-section-->
                             <section id="callouts-section" class="doc-section">
                                 <h2 class="section-title">Callouts</h2>
                                 <div class="section-block">
