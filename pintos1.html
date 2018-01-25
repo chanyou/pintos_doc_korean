@@ -123,15 +123,15 @@
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">lib/</th>
-                                                    <td>Standard C library의 일부가 들어있습니다. 이 코드들은 pintos 커널, 사용자 프로그램과 함께 컴파일 됩니다. 이 라이브러리의 헤더파일들은 커널과 사용자 프로그램 모두에서 <code> #include <...> </code> 형태로 include하면 됩니다. 경우에 따라, 프로젝트를 진행하면서 이들 중 일부를 조금 고쳐야할 수도 있습니다.</td>
+                                                    <td>Standard C library의 일부가 들어있습니다. 이 코드들은 pintos 커널, 사용자 프로그램과 함께 컴파일 됩니다. 이 라이브러리의 헤더파일들은 커널과 사용자 프로그램 모두에서 #include <...> 형태로 include하면 됩니다. 경우에 따라, 프로젝트를 진행하면서 이들 중 일부를 조금 고쳐야할 수도 있습니다.</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">lib/kernel/</th>
-                                                    <td>Pintos kernel만 사용하는 C library가 들어있는 디렉토리입니다. kernel code에서 사용할 수 있는 data type들 (비트맵, 더블 링크드 리스트, 해시 테이블 등)이 포함되어 있습니다. Kernel 코드에서는 이 라이브러리의 헤더 파일들을 다음과 같은 형태로 include 할 수 있습니다. <code> #include <...> </code></td>
+                                                    <td>Pintos kernel만 사용하는 C library가 들어있는 디렉토리입니다. kernel code에서 사용할 수 있는 data type들 (비트맵, 더블 링크드 리스트, 해시 테이블 등)이 포함되어 있습니다. Kernel 코드에서는 이 라이브러리의 헤더 파일들을 다음과 같은 형태로 include 할 수 있습니다. #include <...></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">lib/user/</th>
-                                                    <td>Pintos의 사용자 프로그램에서만 사용되는 C Library가 들어있는 디렉토리입니다. 위와 같이, 사용자 프로그램에선 <code> #include <...></code> 의 형태로 헤더 파일들을 include할 수 있습니다.</td>
+                                                    <td>Pintos의 사용자 프로그램에서만 사용되는 C Library가 들어있는 디렉토리입니다. 위와 같이, 사용자 프로그램에선 #include <...> 의 형태로 헤더 파일들을 include할 수 있습니다.</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">tests/</th>
@@ -154,7 +154,7 @@
                                     <h3 class="block-title">Building Pintos</h3>
                                     <P>
                                     다음 단계로, 프로젝트 1을 위한 소스 코드를 빌드 해 봅시다.
-                                    먼저, <Q><TT>threads</TT></Q> 디렉토리로 들어가서 <code> make </code> 명령어를 실행 해 봅니다. Make 스크립트가 빌드를 마치면 <Q><TT>build</TT></Q>라는 디렉토리가 생성 될 것입니다. 이 안에는 빌드가 완료된 현재 버전의 Pintos 커널이 들어있게 됩니다. 전체 빌드 과정은 보통 30초 이내 입니다. (5분 이상 걸린다면 보통 심각한 문제가 있다고 보면 됩니다.)
+                                    먼저, <Q><TT>threads</TT></Q> 디렉토리로 들어가서 <code> make</code> 명령어를 실행 해 봅니다. Make 스크립트가 빌드를 마치면 <Q><TT>build</TT></Q>라는 디렉토리가 생성 될 것입니다. 이 안에는 빌드가 완료된 현재 버전의 Pintos 커널이 들어있게 됩니다. 전체 빌드 과정은 보통 30초 이내 입니다. (5분 이상 걸린다면 보통 심각한 문제가 있다고 보면 됩니다.)
                                     </P>
                                     <P>
                                     Build에는 리눅스에서 흔히 사용되는 시스템 도구들을 사용합니다.
@@ -201,169 +201,66 @@
                                 <div id="running"  class="section-block">
                                     <h3 class="block-title">Running Pintos</h3>
                                     <P>
-                                    우리는 Pintos를 simulator에서 쉽게 구동시킬 수 있는 프로그램인 <CODE>pintos</CODE>를 제공합니다. 여러분은 간단히, <CODE>pintos</CODE>를 <CODE>pintos <VAR>argument</VAR><small>...</small></CODE> 형태로 실행시킬 수 있습니다. 각각의 <VAR>argument</VAR>는 여러분이 수정하는 Pintos 커널로 전달 됩니다.
+                                    우리는 Pintos를 simulator에서 쉽게 구동시킬 수 있는 프로그램인 pintos를 제공합니다. 여러분은 간단히, pintos를 <CODE>pintos <VAR>argument</VAR><small>...</small></CODE> 형태로 실행시킬 수 있습니다. 각각의 <VAR>argument</VAR>는 여러분이 수정하는 Pintos 커널로 전달 됩니다.
                                     </P>
 
                                     <P>
-
-                                    Try it out.  First <CODE>cd</CODE> into the newly created <Q><TT>build</TT></Q>
-                                    directory.  Then issue the command <CODE>pintos run alarm-multiple</CODE>,
-                                    which passes the arguments <CODE>run alarm-multiple</CODE> to the Pintos
-                                    kernel.  In these arguments, <CODE>run</CODE> instructs the kernel to run a
-                                    test and <CODE>alarm-multiple</CODE> is the test to run.
+                                    먼저 새로 만들어진 <Q><TT>build</TT></Q> 디렉토리로 들어가봅시다. 그리고 <CODE>pintos run alarm-multiple</CODE> 를 입력 해 보세요. 이 명령어는 Pintos kernel에 run alarm-multiple라는 인수(argument)를 넘겨줍니다. 여기서 run 은 Pintos kernel이 테스트를 실행하라는 명령어이고, alarm-multiple은 실행시킬 테스트의 이름 입니다.
+                                    </P>
+                                    <P>
+                                    이 명령어는 Bochs를 실행시키기 위해 필요한 <Q><TT>bochsrc.txt</TT></Q> 파일을 만듭니다. Bochs는 시뮬레이션되는 머신의 디스플레이 창을 열고, BIOS 메세지를 보여줍니다. (환경에 따라 새로운 창이 열리지 않을 수 있습니다) 그리고는 Pintos가 부팅되고 alarm-multiple 테스트 프로그램을 실행하고, 이 테스트의 실행 결과가 보여지게 됩니다. 실행이 끝나면 Bochs를 화면의 오른쪽 위에 있는 Power 버튼을 눌러 끄거나, Reset 버튼을 눌러 재실행할 수 있습니다. (환경에 따라 다를 수 있음)
+                                    </P>
+                                    <P>
+                                    (만일 새로운 창이 뜨지 않는다면, 아마도 원격에서 로그인 한 뒤에 X forwarding을 제대로 설정하지 않은 상태일 것입니다. 그런 경우엔, X setup을 고치거나, <Q><SAMP>-v</SAMP></Q> option을 통해 X output을 비활성화 시킬 수 있습니다: <CODE>pintos -v -- run alarm-multiple</CODE>.)
+                                    </P>
+                                    <P>
+                                    Bochs속 Pintos에서 출력된 text들은 읽기도 전에 사라졌을 수 있습니다. 하지만 Pintos는 VGA display와 first serial port로 output을 모두 전송하고 그 serial port가 Bochs의 <CODE>stdin</CODE>과 <CODE>stdout</CODE>에 연결되어 있습니다. 따라서 여러분은 <CODE>pintos run alarm-multiple &gt; logfile</CODE>과 같은 redirection을 통해 모든 출력을 logfile로 남길 수 있습니다.
                                     </P>
                                     <P>
 
-                                    This command creates a <Q><TT>bochsrc.txt</TT></Q> file, which is needed for
-                                    running Bochs, and then invoke Bochs.  Bochs opens a new window that
-                                    represents the simulated machine's display, and a BIOS message briefly
-                                    flashes.  Then Pintos boots and runs the <CODE>alarm-multiple</CODE> test
-                                    program, which outputs a few screenfuls of text.  When it's done, you
-                                    can close Bochs by clicking on the &quot;Power&quot; button in the window's top
-                                    right corner, or rerun the whole process by clicking on the &quot;Reset&quot;
-                                    button just to its left.  The other buttons are not very useful for our
-                                    purposes.
+                                    pintos 프로그램은 시뮬레이터나 가상 하드웨어를 설정할 수 있는 몇가지 옵션을 제공합니다. 옵션을 설정할 때에는 kernel로 전해질 argument들과 <Q><SAMP>--</SAMP></Q>로 구분되고, 이보다 앞에 있어야 합니다. 따라서 명령어는 <CODE>pintos <VAR>option</VAR><small>...</small> -- <VAR>argument</VAR><small>...</small></CODE>의 형태로 나타나야 합니다. Invoke 옵션은 사용할 시뮬레이트를 선택할 수 있습니다. 기본 시뮬레이터는 Bochs이나, <Q><SAMP>--qemu</SAMP></Q> 옵션을 통해 QEMU도 사용이 가능합니다. 시뮬레이터에 디버거를 붙인 상태로 구동시킬 수도 있고 (see section <A HREF="pintos_10.html#SEC151">E.5 GDB</A>), 가상머신의 메모리를 설정할 수도 있습니다.  <Q><SAMP>-v</SAMP></Q> 옵션을 통해 VGA display를 끌 수도 있고, <Q><SAMP>-t</SAMP></Q>를 통해 터미널을 VGA display로 쓸 수도 있습니다. (Bochs의  경우만 가능) 또한, <Q><SAMP>-s</SAMP></Q>를 통해 <CODE>stdin</CODE>과 <CODE>stdout</CODE>을 통한 Serial I/O를 막을 수도 있습니다.
                                     </P>
                                     <P>
-
-                                    (If no window appeared at all, then you're probably logged in remotely and X
-                                    forwarding is not set up correctly.  In this case, you can fix your X
-                                    setup, or you can use the <Q><SAMP>-v</SAMP></Q> option to disable X output:
-                                    <CODE>pintos -v -- run alarm-multiple</CODE>.)
-                                    </P>
-                                    <P>
-
-                                    The text printed by Pintos inside Bochs probably went by too quickly to
-                                    read.  However, you've probably noticed by now that the same text was
-                                    displayed in the terminal you used to run <CODE>pintos</CODE>.  This is
-                                    because Pintos sends all output both to the VGA display and to the first
-                                    serial port, and by default the serial port is connected to Bochs's
-                                    <CODE>stdin</CODE> and <CODE>stdout</CODE>.  You can log serial output to a file by
-                                    redirecting at the
-                                    command line, e.g. <CODE>pintos run alarm-multiple &gt; logfile</CODE>.
-                                    </P>
-                                    <P>
-
-                                    The <CODE>pintos</CODE> program offers several options for configuring the
-                                    simulator or the virtual hardware.  If you specify any options, they
-                                    must precede the commands passed to the Pintos kernel and be separated
-                                    from them by <Q><SAMP>--</SAMP></Q>, so that the whole command looks like
-                                    <CODE>pintos <VAR>option</VAR><small>...</small> -- <VAR>argument</VAR><small>...</small></CODE>.  Invoke
-                                    <CODE>pintos</CODE> without any arguments to see a list of available options.
-                                    Options can select a simulator to use: the default is Bochs, but
-                                    <Q><SAMP>--qemu</SAMP></Q> selects QEMU.  You can run the simulator
-                                    with a debugger (see section <A HREF="pintos_10.html#SEC151">E.5 GDB</A>).  You can set the amount of memory to give
-                                    the VM.  Finally, you can select how you want VM output to be displayed:
-                                    use <Q><SAMP>-v</SAMP></Q> to turn off the VGA display, <Q><SAMP>-t</SAMP></Q> to use your
-                                    terminal window as the VGA display instead of opening a new window
-                                    (Bochs only), or <Q><SAMP>-s</SAMP></Q> to suppress serial input from <CODE>stdin</CODE>
-                                    and output to <CODE>stdout</CODE>.
-                                    </P>
-                                    <P>
-
-                                    The Pintos kernel has commands and options other than <CODE>run</CODE>.
-                                    These are not very interesting for now, but you can see a list of them
-                                    using <Q><SAMP>-h</SAMP></Q>, e.g. <CODE>pintos -h</CODE>.
+                                    Pintos 커널은 run 외에 다른 명령어와 옵션을 많이 가지고 있습니다. 별로 쓸 일은 없겠지만, <Q><SAMP>-h</SAMP></Q> 옵션으로 리스트를 확인할 수 있습니다. (<CODE>pintos -h</CODE>)
                                     </P>
                                 </div><!--//section-block-->
                                 <div id="debugging"  class="section-block">
                                     <h3 class="block-title">Debugging versus Testing</h3>
                                     <P>
-
-                                    When you're debugging code, it's useful to be able to run a
-                                    program twice and have it do exactly the same thing.  On second and
-                                    later runs, you can make new observations without having to discard or
-                                    verify your old observations.  This property is called
-                                    &quot;reproducibility.&quot;  One of the simulators that Pintos supports, Bochs,
-                                    can be set up for
-                                    reproducibility, and that's the way that <CODE>pintos</CODE> invokes it
-                                    by default.
+                                    코드를 디버깅 할때는 프로그램을 두번 정확히 똑같이 돌려보는게 유용할 수 있습니다. 두번째나 그 다음번에 완벽히 같은 조건으로 실행시켜 보면 문제가 정말 재현되는 것인지 확인할 수 있기 때문입니다. Pintos가 지원하는 기본 시뮬레이터인 Bochs는 재현성 모드를 지원합니다. 
                                     </P>
                                     <P>
-
-                                    Of course, a simulation can only be reproducible from one run to the
-                                    next if its input is the same each time.  For simulating an entire
-                                    computer, as we do, this means that every part of the computer must be
-                                    the same.  For example, you must use the same command-line argument, the
-                                    same disks, the same version
-                                    of Bochs, and you must not hit any keys on the keyboard (because you
-                                    could not be sure to hit them at exactly the same point each time)
-                                    during the runs.
+                                    물론 시뮬레이션은 input이 완벽히 일치할 때 재현이 가능합니다. 이것은 시뮬레이션하는 컴퓨터의 전부가 같아야 한다는 뜻입니다. 예를 들어 같은 command-line argument, 같은 disk, 같은 version의 Bochs를 써야 재현이 가능합니다. (키보드 입력은 없어야 합니다, 왜냐면 여러분이 정확히 같은 타이밍에 키보드 입력을 할 수는 없기 때문입니다)
                                     </P>
                                     <P>
-
-                                    While reproducibility is useful for debugging, it is a problem for
-                                    testing thread synchronization, an important part of most of the projects.  In
-                                    particular, when Bochs is set up for reproducibility, timer interrupts
-                                    will come at perfectly reproducible points, and therefore so will
-                                    thread switches.  That means that running the same test several times
-                                    doesn't give you any greater confidence in your code's correctness
-                                    than does running it only once.
+                                    재현성은 디버깅을 위해서는 좋지만, 대부분의 프로젝트에서 가장 중요한 thread synchronization을 테스트할 때는 문제를 야기합니다. Bochs가 재현성 모드로 설정되어 있을 때, timer interrupt는 항상 같은 시간에 발생하게 됩니다. 따라서 thread switch도 같은 시간에 발생하게 됩니다. 이것은 여러번 테스트를 수행하는 것이, synchronization 측면에서, 여러분의 코드의 신뢰성이나 정확성을 확인하는데 아무 도움이 되지 않는다는 것입니다. 
                                     </P>
                                     <P>
-
-                                    So, to make your code easier to test, we've added a feature, called
-                                    &quot;jitter,&quot; to Bochs, that makes timer interrupts come at random
-                                    intervals, but in a perfectly predictable way.  In particular, if you
-                                    invoke <CODE>pintos</CODE> with the option <Q><SAMP>-j <VAR>seed</VAR></SAMP></Q>, timer
-                                    interrupts will come at irregularly spaced intervals.  Within a single
-                                    <VAR>seed</VAR> value, execution will still be reproducible, but timer
-                                    behavior will change as <VAR>seed</VAR> is varied.  Thus, for the highest
-                                    degree of confidence you should test your code with many seed values.
+                                    여기서 우리는 Bochos의 &quot;jitter,&quot;라는 특성을 사용할 수 있습니다. 이것은 timer interrupt가 랜덤한 간격으로 일어나게 만듭니다. (하지만 predictable 합니다.) 여러분이 pintos에 <Q><SAMP>-j <VAR>seed</VAR></SAMP></Q> 옵션을 주면 , timer interrupt는 균일하지 않은 간격으로 일어나게 될 것입니다. 그리고 이 간격은 <Var>seed</Var>에 의존적이기 때문에, 이 변수를 바꾸지 않는 한 재현성은 유지 될 것입니다. 따라서, 여러분은 코드의 신뢰성을 높이기 위해 여러 seed 값으로 테스트를 실행 해야 합니다. 
                                     </P>
                                     <P>
-
-                                    On the other hand, when Bochs runs in reproducible mode, timings are not
-                                    realistic, meaning that a &quot;one-second&quot; delay may be much shorter or
-                                    even much longer than one second.  You can invoke <CODE>pintos</CODE> with
-                                    a different option, <Q><SAMP>-r</SAMP></Q>, to set up Bochs for realistic
-                                    timings, in which a one-second delay should take approximately one
-                                    second of real time.  Simulation in real-time mode is not reproducible,
-                                    and options <Q><SAMP>-j</SAMP></Q> and <Q><SAMP>-r</SAMP></Q> are mutually exclusive.
+                                    다른 한편, Bochs가 재현성 모드로 동작할때 타이밍은 현실적이지 않습니다. (1의 delay가 실제로 그보다 훨씬 짧거나, 길 수 있습니다) 이를 막기 위해 다른 옵션을 사용할 수 있습니다. <Q><SAMP>-r</SAMP></Q> 옵션을 사용하면 Bochs가 현실적인 타이밍을 사용하도록 합니다. 다만, 이 모드에서는 재현성이 보장되지 않으며, <Q><SAMP>-j</SAMP></Q> 옵션을 사용할 수 없습니다. 
                                     </P>
                                     <P>
-
-                                    The QEMU simulator is available as an
-                                    alternative to Bochs (use <Q><SAMP>--qemu</SAMP></Q> when invoking
-                                    <CODE>pintos</CODE>).  The QEMU simulator is much faster than Bochs, but it
-                                    only supports real-time simulation and does not have a reproducible
-                                    mode.
+                                    Bochs 대신 QEMU 시뮬레이터를 사용할 수도 있습니다. (pintos를 실행할 때 <Q><SAMP>--qemu</SAMP></Q> 옵션을 사용하면 됩니다)  QEMU는 Bochs보다 훨씬 빠릅니다. 다만, 이 시뮬레이터는 실시간(*현실적인) 시뮬레이션만 가능하며, 재현성 모드를 지원하지 않습니다.
                                     </P>
                                 </div><!--//section-block-->
                             </section><!--//doc-section-->
 
                             <section id="grading-section" class="doc-section">
                                 <h2 class="section-title">Grading</h2>
-								<p> We will grade your assignments based on test results and design quality, each of which comprises 50% of your grade. </p>
+								<p>  보통 Pintos Project는 test 점수와 디자인 품질(Design document + implementation)로 평가합니다. 각각의 비중은 교과목 담당 교수님에 따라 다를 것입니다. (Stanford의 경우 50:50이라고 합니다.)
+                                </p>
                                 <div id="testing"  class="section-block">
                                     <h3 class="block-title">Testing</h3>
-                                    <p>Your test result grade will be based on our tests.  Each project has
-											several tests, each of which has a name beginning with <Q><TT>tests</TT></Q>.
-											To completely test your submission, invoke <CODE>make check</CODE> from the
-											project <Q><TT>build</TT></Q> directory.  This will build and run each test and
-											print a &quot;pass&quot; or &quot;fail&quot; message for each one.  When a test fails,
-											<CODE>make check</CODE> also prints some details of the reason for failure.
-											After running all the tests, <CODE>make check</CODE> also prints a summary
-											of the test results.
+                                    <p> 여러분의 test 점수는 각각의 test의 통과 여부에 따라 결정됩니다. 각각의 프로젝트는 몇개씩의 test를 가지고 있습니다. 결과물을 test하기 위해, 프로젝트의 디렉토리에서 <CODE>make check</CODE>를 실행하세요. 이 명령어는 프로젝트를 빌드하고 각각의 테스트를 수행한 뒤, 어떤 test가 통과되거나 실패했는지 출력하게 합니다. 어떤 테스트가 실패하는 경우, <CODE>make check</CODE>는 간략한 실패 사유 또한 보여줄 것입니다. 모든 테스트가 수행된 후에는 결과의 요약이 보여집니다.
                                     </p>
 									<P>
-
-											For project 1, the tests will probably run faster in Bochs.  For the
-											rest of the projects, they will run much faster in QEMU.
-											<CODE>make check</CODE> will select the faster simulator by default, but
-											you can override its choice by specifying <Q><SAMP>SIMULATOR=--bochs</SAMP></Q> or
-											<Q><SAMP>SIMULATOR=--qemu</SAMP></Q> on the <CODE>make</CODE> command line.
+                                        Project 1의 경우는 Bochs에서 테스트들이 더 빠르게 돌아 갈 것입니다. 나머지의 경우는 QEMU에서 훨씬 빠를 것입니다. <CODE>make check</CODE>는 기본적으로 빠른 시뮬레이터를 사용합니다. 하지만 여러분은 <Q><SAMP>SIMULATOR=--bochs</SAMP></Q>나 <Q><SAMP>SIMULATOR=--qemu</SAMP></Q>의 옵션을 사용하여 시뮬레이터를 선택할 수 있습니다.
 											</P>
 											<P>
 
-											You can also run individual tests one at a time.  A given test <VAR>t</VAR>
-											writes its output to <Q><TT><VAR>t</VAR>.output</TT></Q>, then a script scores the
-											output as &quot;pass&quot; or &quot;fail&quot; and writes the verdict to
-											<Q><TT><VAR>t</VAR>.result</TT></Q>.  To run and grade a single test, <CODE>make</CODE>
-											the <Q><TT>.result</TT></Q> file explicitly from the <Q><TT>build</TT></Q> directory, e.g.
-											<CODE>make tests/threads/alarm-multiple.result</CODE>.  If <CODE>make</CODE> says
-											that the test result is up-to-date, but you want to re-run it anyway,
-											either run <CODE>make clean</CODE> or delete the <Q><TT>.output</TT></Q> file by hand.
+                                            또한 여러분은 한번에 한가지 테스트만을 실행해 볼 수도 있습니다. Test <VAR>t</VAR>는 <Q><TT><VAR>t</VAR>.output</TT></Q>에 출력물을 기록합니다. 그러면 어떤 스크립트가 이 output을 읽어 pass인지 fail인지 판단하게 되고, 판단 결과를 <Q><TT><VAR>t</VAR>.result</TT></Q>에 쓰게 됩니다. 한가지 테스트를 실행하기 위해서는 해당되는 result file을 <Q><TT>build</TT></Q> 디렉토리에서 <CODE>make</CODE> 하면 됩니다. 예를 들어 <CODE>make tests/threads/alarm-multiple.result</CODE> 명령어를 실행하면 alarm-multiple 테스트를 실행하게 됩니다. 만약 <CODE>make</CODE>에서 "test result is up-to-date"라는 출력을 하지만 다시 돌려보고 싶다면, <Code>make clean</Code>을 하거나, <Q><TT>.output</TT></Q>파일을 지우고 다시 실행하면 됩니다.
 											</P>
 											<P>
 
@@ -433,20 +330,14 @@
 										The instructions for this section are always the same:
 										</P>
 										<P>
-										<BLOCKQUOTE>
-										Copy here the declaration of each new or changed <CODE>struct</CODE> or
-										<CODE>struct</CODE> member, global or static variable, <CODE>typedef</CODE>, or
-										enumeration.  Identify the purpose of each in 25 words or less.
-										</BLOCKQUOTE>
-										<P>
-										The first part is mechanical.  Just copy new or modified declarations
+										The first part is mechanical. Just copy new or modified declarations
 										into the design document, to highlight for us the actual changes to data
-										structures.  Each declaration should include the comment that should
+										structures. Each declaration should include the comment that should
 										accompany it in the source code (see below).
 										</P>
 										<P>
 										We also ask for a very brief description of the purpose of each new or
-										changed data structure.  The limit of 25 words or less is a guideline
+										changed data structure. The limit of 25 words or less is a guideline
 										intended to save your time and avoid duplication with later areas.
 										</P>
 										<P>
@@ -503,53 +394,53 @@
 											<h4>Source Code</h4>
 											<P>
 
-Your design will also be judged by looking at your source code.  We will
-typically look at the differences between the original Pintos source
-tree and your submission, based on the output of a command like
-<CODE>diff -urpb pintos.orig pintos.submitted</CODE>.  We will try to match up your
-description of the design with the code submitted.  Important
-discrepancies between the description and the actual code will be
-penalized, as will be any bugs we find by spot checks.
-</P>
-<P>
+                                                Your design will also be judged by looking at your source code.  We will
+                                                typically look at the differences between the original Pintos source
+                                                tree and your submission, based on the output of a command like
+                                                <CODE>diff -urpb pintos.orig pintos.submitted</CODE>.  We will try to match up your
+                                                description of the design with the code submitted.  Important
+                                                discrepancies between the description and the actual code will be
+                                                penalized, as will be any bugs we find by spot checks.
+                                            </P>
+                                            <P>
 
-The most important aspects of source code design are those that specifically
-relate to the operating system issues at stake in the project.  For
-example, the organization of an inode is an important part of file
-system design, so in the file system project a poorly designed inode
-would lose points.  Other issues are much less important.  For
-example, multiple Pintos design problems call for a &quot;priority
-queue,&quot; that is, a dynamic collection from which the minimum (or
-maximum) item can quickly be extracted.  Fast priority queues can be
-implemented many ways, but we do not expect you to build a fancy data
-structure even if it might improve performance.  Instead, you are
-welcome to use a linked list (and Pintos even provides one with
-convenient functions for sorting and finding minimums and maximums).
-</P>
-<P>
+                                                The most important aspects of source code design are those that specifically
+                                                relate to the operating system issues at stake in the project.  For
+                                                example, the organization of an inode is an important part of file
+                                                system design, so in the file system project a poorly designed inode
+                                                would lose points.  Other issues are much less important.  For
+                                                example, multiple Pintos design problems call for a &quot;priority
+                                                queue,&quot; that is, a dynamic collection from which the minimum (or
+                                                maximum) item can quickly be extracted.  Fast priority queues can be
+                                                implemented many ways, but we do not expect you to build a fancy data
+                                                structure even if it might improve performance.  Instead, you are
+                                                welcome to use a linked list (and Pintos even provides one with
+                                                convenient functions for sorting and finding minimums and maximums).
+                                            </P>
+                                            <P>
 
-Pintos is written in a consistent style.  Make your additions and
-modifications in existing Pintos source files blend in, not stick out.
-In new source files, adopt the existing Pintos style by preference, but
-make your code self-consistent at the very least.  There should not be a
-patchwork of different styles that makes it obvious that three different
-people wrote the code.  Use horizontal and vertical white space to make
-code readable.  Add a brief comment on every structure, structure
-member, global or static variable, typedef, enumeration, and function
-definition.  Update
-existing comments as you modify code.  Don't comment out or use the
-preprocessor to ignore blocks of code (instead, remove it entirely).
-Use assertions to document key invariants.  Decompose code into
-functions for clarity.  Code that is difficult to understand because it
-violates these or other &quot;common sense&quot; software engineering practices
-will be penalized.
-</P>
-<P>
+                                                Pintos is written in a consistent style.  Make your additions and
+                                                modifications in existing Pintos source files blend in, not stick out.
+                                                In new source files, adopt the existing Pintos style by preference, but
+                                                make your code self-consistent at the very least.  There should not be a
+                                                patchwork of different styles that makes it obvious that three different
+                                                people wrote the code.  Use horizontal and vertical white space to make
+                                                code readable.  Add a brief comment on every structure, structure
+                                                member, global or static variable, typedef, enumeration, and function
+                                                definition.  Update
+                                                existing comments as you modify code.  Don't comment out or use the
+                                                preprocessor to ignore blocks of code (instead, remove it entirely).
+                                                Use assertions to document key invariants.  Decompose code into
+                                                functions for clarity.  Code that is difficult to understand because it
+                                                violates these or other &quot;common sense&quot; software engineering practices
+                                                will be penalized.
+                                            </P>
+                                            <P>
 
-In the end, remember your audience.  Code is written primarily to be
-read by humans.  It has to be acceptable to the compiler too, but the
-compiler doesn't care about how it looks or how well it is written.
-</P>
+                                                In the end, remember your audience.  Code is written primarily to be
+                                                read by humans.  It has to be acceptable to the compiler too, but the
+                                                compiler doesn't care about how it looks or how well it is written.
+                                            </P>
 										</div> <!-- content -->
                                 </div><!--//section-block-->
                                
@@ -558,216 +449,78 @@ compiler doesn't care about how it looks or how well it is written.
                             <section id="legal-section" class="doc-section">
                                 <h2 class="section-title">Legal and Ethical Issues</h2>
                                 <div class="section-block">
-                                   <P>
+                                 <P>
 
-Pintos is distributed under a liberal license that allows free use,
-modification, and distribution.  Students and others who work on Pintos
-own the code that they write and may use it for any purpose.
-Pintos comes with NO WARRANTY, not even for MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.
-See section <A HREF="pintos_14.html#SEC172">License</A>, for details of the license and lack of warranty.
-</P>
-<P>
+                                    Pintos is distributed under a liberal license that allows free use,
+                                    modification, and distribution.  Students and others who work on Pintos
+                                    own the code that they write and may use it for any purpose.
+                                    Pintos comes with NO WARRANTY, not even for MERCHANTABILITY or FITNESS
+                                    FOR A PARTICULAR PURPOSE.
+                                    See section <A HREF="pintos_14.html#SEC172">License</A>, for details of the license and lack of warranty.
+                                </P>
+                                <P>
 
-In the context of Stanford's CS 140 course, please respect the spirit
-and the letter of the honor code by refraining from reading any homework
-solutions available online or elsewhere.  Reading the source code for
-other operating system kernels, such as Linux or FreeBSD, is allowed,
-but do not copy code from them literally.  Please cite the code that
-inspired your own in your design documentation.
-</P>
+                                    In the context of Stanford's CS 140 course, please respect the spirit
+                                    and the letter of the honor code by refraining from reading any homework
+                                    solutions available online or elsewhere.  Reading the source code for
+                                    other operating system kernels, such as Linux or FreeBSD, is allowed,
+                                    but do not copy code from them literally.  Please cite the code that
+                                    inspired your own in your design documentation.
+                                </P>
                             </section><!--//legal-section-->
-                            <section id="callouts-section" class="doc-section">
-                                <h2 class="section-title">Callouts</h2>
+                            <section id="ack-section" class="doc-section">
+                                <h2 class="section-title">Acknowledgements</h2>
                                 <div class="section-block">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. 
-                                    </p>
-                                </div>
+                                 <P>
+                                    The Pintos core and this documentation were originally written by Ben
+                                    Pfaff <A HREF="mailto:blp@cs.stanford.edu">blp@cs.stanford.edu</A>.
+                                </P>
+                                <P>
+                                    Additional features were contributed by Anthony Romano
+                                    <A HREF="mailto:chz@vt.edu">chz@vt.edu</A>.
+                                </P>
+                                <P>
+                                    The GDB macros supplied with Pintos were written by Godmar Back
+                                    <A HREF="mailto:gback@cs.vt.edu">gback@cs.vt.edu</A>, and their documentation is adapted from his
+                                    work.
+                                </P>
+                                <P>
+                                    The original structure and form of Pintos was inspired by the Nachos
+                                    instructional operating system from the University of California,
+                                    Berkeley ([ <A HREF="pintos_13.html#Christopher">Christopher</A>]).
+                                </P>
+                                <P>
+                                    The Pintos projects and documentation originated with those designed for
+                                    Nachos by current and former CS 140 teaching assistants at Stanford
+                                    University, including at least Yu Ping, Greg Hutchins, Kelly Shaw, Paul
+                                    Twohey, Sameer Qureshi, and John Rector.
+                                </P>
+                                <P>
+                                    Example code for monitors (see section <A HREF="pintos_6.html#SEC104">A.3.4 Monitors</A>) is
+                                    from classroom slides originally by Dawson Engler and updated by Mendel
+                                    Rosenblum.
+                                </P>
+                            </section><!--//legal-section-->
+                            <section id="trivia-section" class="doc-section">
+                                <h2 class="section-title">Trivia</h2>
+                                <div class="section-block">
+                                <P>
+                                    Pintos originated as a replacement for Nachos with a similar design.
+                                    Since then Pintos has greatly diverged from the Nachos design.  Pintos
+                                    differs from Nachos in two important ways.  First, Pintos runs on real
+                                    or simulated 80<VAR>x</VAR>86 hardware, but Nachos runs as a process on a
+                                    host operating system.  Second, Pintos is written in C like most
+                                    real-world operating systems, but Nachos is written in C++.
+                                </P>
+                                <P>
 
-                                <div class="section-block">
-                                    <div class="callout-block callout-info">
-                                        <div class="icon-holder">
-                                            <i class="fa fa-info-circle"></i>
-                                        </div><!--//icon-holder-->
-                                        <div class="content">
-                                            <h4 class="callout-title">Aenean imperdiet</h4>
-                                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium <code>&lt;code&gt;</code> , Nemo enim ipsam voluptatem quia voluptas <a href="#">link example</a> sit aspernatur aut odit aut fugit.</p>
-                                        </div><!--//content-->
-                                    </div><!--//callout-block-->
-                                    
-                                    <div class="callout-block callout-warning">
-                                        <div class="icon-holder">
-                                            <i class="fa fa-bug"></i>
-                                        </div><!--//icon-holder-->
-                                        <div class="content">
-                                            <h4 class="callout-title">Morbi posuere</h4>
-                                            <p>Nunc hendrerit odio quis dignissim efficitur. Proin ut finibus libero. Morbi posuere fringilla felis eget sagittis. Fusce sem orci, cursus in tortor <a href="#">link example</a> tellus vel diam viverra elementum.</p>
-                                        </div><!--//content-->
-                                    </div><!--//callout-block-->
-                                    
-                                    <div class="callout-block callout-success">
-                                        <div class="icon-holder">
-                                            <i class="fa fa-thumbs-up"></i>
-                                        </div><!--//icon-holder-->
-                                        <div class="content">
-                                            <h4 class="callout-title">Lorem ipsum dolor sit amet</h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <a href="#">Link example</a> aenean commodo ligula eget dolor.</p>
-                                        </div><!--//content-->
-                                    </div><!--//callout-block-->
-                                    
-                                    <div class="callout-block callout-danger">
-                                        <div class="icon-holder">
-                                            <i class="fa fa-exclamation-triangle"></i>
-                                        </div><!--//icon-holder-->
-                                        <div class="content">
-                                            <h4 class="callout-title">Interdum et malesuada</h4>
-                                            <p>Morbi eget interdum sapien. Donec sed turpis sed nulla lacinia accumsan vitae ut tellus. Aenean vestibulum <a href="#">Link example</a> maximus ipsum vel dignissim. Morbi ornare elit sit amet massa feugiat, viverra dictum ipsum pellentesque. </p>
-                                        </div><!--//content-->
-                                    </div><!--//callout-block-->
-                                </div>
-                            </section><!--//doc-section-->
-                            <section id="tables-section" class="doc-section">
-                                <h2 class="section-title">Tables</h2>
-                                <div class="section-block">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis.
-                                    </p>
-                                </div>
-                                <div class="section-block">
-                                    <h6>Basic Table</h6>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Username</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div><!--//table-responsive-->
-                                    <h6>Bordered Table</h6>
-                                    <div class="table-responsive">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Username</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div><!--//table-responsive-->
-                                    <h6>Striped Table</h6>
-                                    
-                                </div><!--//section-block-->
-                            </section><!--//doc-section-->
-                            <section id="buttons-section" class="doc-section">
-                                <h2 class="section-title">Buttons</h2>
-                                <div class="section-block">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec imperdiet turpis. Curabitur aliquet pulvinar ultrices. Etiam at posuere leo. Proin ultrices ex et dapibus feugiat <a href="#">link example</a> aenean purus leo, faucibus at elit vel, aliquet scelerisque dui. Etiam quis elit euismod, imperdiet augue sit amet, imperdiet odio. Aenean sem erat, hendrerit  eu gravida id, dignissim ut ante. Nam consequat porttitor libero euismod congue. 
-                                    </p>
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <h6>Basic Buttons</h6>
-                                            <ul class="list list-unstyled">
-                                                <li><a href="#" class="btn btn-primary">Primary Button</a></li>
-                                                <li><a href="#" class="btn btn-green">Green Button</a></li>
-                                                <li><a href="#" class="btn btn-blue">Blue Button</a></li>
-                                                <li><a href="#" class="btn btn-orange">Orange Button</a></li>
-                                                <li><a href="#" class="btn btn-red">Red Button</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <h6>CTA Buttons</h6>
-                                            <ul class="list list-unstyled">
-                                                <li><a href="#" class="btn btn-primary btn-cta"><i class="fa fa-download"></i> Download Now</a></li>
-                                                <li><a href="#" class="btn btn-green btn-cta"><i class="fa fa-code-fork"></i> Fork Now</a></li>
-                                                <li><a href="#" class="btn btn-blue btn-cta"><i class="fa fa-play-circle"></i> Find Out Now</a></li>
-                                                <li><a href="#" class="btn btn-orange btn-cta"><i class="fa fa-bug"></i> Report Bugs</a></li>
-                                                <li><a href="#" class="btn btn-red btn-cta"><i class="fa fa-exclamation-circle"></i> Submit Issues</a></li>
-                                            </ul>
-                                        </div>
-                                    </div><!--//row-->
-                                </div><!--//section-block-->
-                            </section><!--//doc-section-->
-                            <section id="video-section" class="doc-section">
-                                <h2 class="section-title">Video</h2>
-                                <div class="section-block">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <h6>Responsive Video 16:9</h6>
-                                            <!-- 16:9 aspect ratio -->
-                                            <div class="embed-responsive embed-responsive-16by9">
-                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ejBkOjEG6F0?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <h6>Responsive Video 4:3</h6>
-                                            <!-- 4:3 aspect ratio -->
-                                            <div class="embed-responsive embed-responsive-4by3">
-                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ejBkOjEG6F0?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-                                            </div>
-                                        </div>
-                                    </div><!--//row-->
-                                </div><!--//section-block-->
-                            <section id="icons-section" class="doc-section">
-                                <h2 class="section-title">Icons</h2>
-                                <div class="section-block">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec imperdiet turpis. Curabitur aliquet pulvinar ultrices. Etiam at posuere leo. Proin ultrices ex et dapibus feugiat <a href="#">link example</a> aenean purus leo, faucibus at elit vel, aliquet scelerisque dui. Etiam quis elit euismod, imperdiet augue sit amet, imperdiet odio. Aenean sem erat, hendrerit  eu gravida id, dignissim ut ante. Nam consequat porttitor libero euismod congue. 
-                                    </p>
-                                </div><!--//section-block-->
-                                <div class="section-block">
-                                    <h6>Elegant Icon Font</h6>
-                                    <a href="https://www.elegantthemes.com/blog/resources/elegant-icon-font" target="_blank"><img class="img-responsive" src="assets/images/demo/elegant-icon-font.jpg" alt="elegant icons" /></a>
-                                </div><!--//section-block-->
-                                <div class="section-block">
-                                    <h6>FontAwesome Icon Font</h6>
-                                    <a href="https://fortawesome.github.io/Font-Awesome/" target="_blank"><img class="img-responsive" src="assets/images/demo/fontawesome-icons.png" alt="fontawesome" /></a>
-                                </div><!--//section-block-->
-                                
-                            </section><!--//doc-section-->
+                                    Why the name &quot;Pintos&quot;?  First, like nachos, pinto beans are a common
+                                    Mexican food.  Second, Pintos is small and a &quot;pint&quot; is a small amount.
+                                    Third, like drivers of the eponymous car, students are likely to have
+                                    trouble with blow-ups.
+                                </P>
+                            </section><!--//legal-section-->
+                            
                             
                             </section><!--//doc-section-->
                         </div><!--//content-inner-->
